@@ -138,6 +138,12 @@ export interface ListDocuments200ResponseDocumentsInner {
      * @type {string}
      * @memberof ListDocuments200ResponseDocumentsInner
      */
+    noteKind?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListDocuments200ResponseDocumentsInner
+     */
     extractionMethod?: ListDocuments200ResponseDocumentsInnerExtractionMethodEnum;
     /**
      * 
@@ -239,7 +245,9 @@ export const ListDocuments200ResponseDocumentsInnerSourceKindEnum = {
     Notion: 'NOTION',
     Linear: 'LINEAR',
     Chat: 'CHAT',
-    Seed: 'SEED'
+    Seed: 'SEED',
+    Link: 'LINK',
+    Shared: 'SHARED'
 } as const;
 export type ListDocuments200ResponseDocumentsInnerSourceKindEnum = typeof ListDocuments200ResponseDocumentsInnerSourceKindEnum[keyof typeof ListDocuments200ResponseDocumentsInnerSourceKindEnum];
 
@@ -309,6 +317,7 @@ export function ListDocuments200ResponseDocumentsInnerFromJSONTyped(json: any, i
         'failureMessage': json['failureMessage'] == null ? undefined : json['failureMessage'],
         'storageUrl': json['storageUrl'] == null ? undefined : json['storageUrl'],
         'deletedAt': json['deletedAt'] == null ? undefined : json['deletedAt'],
+        'noteKind': json['noteKind'] == null ? undefined : json['noteKind'],
         'extractionMethod': json['extractionMethod'] == null ? undefined : json['extractionMethod'],
         'structuredRegions': json['structuredRegions'] == null ? undefined : json['structuredRegions'],
         'provenanceChain': json['provenanceChain'] == null ? undefined : json['provenanceChain'],
@@ -357,6 +366,7 @@ export function ListDocuments200ResponseDocumentsInnerToJSONTyped(value?: ListDo
         'failureMessage': value['failureMessage'],
         'storageUrl': value['storageUrl'],
         'deletedAt': value['deletedAt'],
+        'noteKind': value['noteKind'],
         'extractionMethod': value['extractionMethod'],
         'structuredRegions': value['structuredRegions'],
         'provenanceChain': value['provenanceChain'],

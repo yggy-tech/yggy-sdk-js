@@ -115,6 +115,7 @@ export interface UploadDocumentRequest {
     text?: string;
     noteKind?: UploadDocumentNoteKindEnum;
     parentNoteId?: string;
+    forLinkId?: string;
     title?: string;
     source?: string;
     originSystem?: string;
@@ -793,6 +794,10 @@ export class DocumentsApi extends runtime.BaseAPI {
 
         if (requestParameters['parentNoteId'] != null) {
             formParams.append('parentNoteId', requestParameters['parentNoteId'] as any);
+        }
+
+        if (requestParameters['forLinkId'] != null) {
+            formParams.append('forLinkId', requestParameters['forLinkId'] as any);
         }
 
         if (requestParameters['title'] != null) {
