@@ -11,11 +11,13 @@
 
 ## Install
 
-The npm package `@yggy-tech/sdk` is not published yet. Until it is, install from GitHub:
+The npm package `@yggy-tech/sdk` is not published yet. Until it is, install a tagged release from GitHub:
 
 ```bash
-npm install github:yggy-tech/yggy-sdk-js
+npm install github:yggy-tech/yggy-sdk-js#v0.1.0
 ```
+
+npm builds the package on install. Bun skips that build unless you list the package under `trustedDependencies` in your `package.json`.
 
 ## Example
 
