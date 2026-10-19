@@ -67,6 +67,7 @@ export const ListProjects400ResponseErrorCodeEnum = {
     ProjectConflict: 'PROJECT_CONFLICT',
     StorageNotConfigured: 'STORAGE_NOT_CONFIGURED',
     BillingNotConfigured: 'BILLING_NOT_CONFIGURED',
+    LicenseInactive: 'LICENSE_INACTIVE',
     PlanRequired: 'PLAN_REQUIRED',
     MemberLimitReached: 'MEMBER_LIMIT_REACHED',
     ProjectMembershipJwtTooLarge: 'PROJECT_MEMBERSHIP_JWT_TOO_LARGE',
