@@ -81,7 +81,20 @@ export const ListProjects400ResponseErrorCodeEnum = {
     ApiKeyPermissionExceedsRole: 'API_KEY_PERMISSION_EXCEEDS_ROLE',
     ApiKeyNoPermissions: 'API_KEY_NO_PERMISSIONS',
     OrgKeyGraphScopeUnavailable: 'ORG_KEY_GRAPH_SCOPE_UNAVAILABLE',
-    OrgKeyTooManyProjects: 'ORG_KEY_TOO_MANY_PROJECTS'
+    OrgKeyTooManyProjects: 'ORG_KEY_TOO_MANY_PROJECTS',
+    SenderIsLoginEmail: 'SENDER_IS_LOGIN_EMAIL',
+    SenderTaken: 'SENDER_TAKEN',
+    RunnerAmbiguousPrincipal: 'RUNNER_AMBIGUOUS_PRINCIPAL',
+    RunnerSignatureMalformed: 'RUNNER_SIGNATURE_MALFORMED',
+    RunnerUnauthorized: 'RUNNER_UNAUTHORIZED',
+    RunnerLengthRequired: 'RUNNER_LENGTH_REQUIRED',
+    RunnerBodyTooLarge: 'RUNNER_BODY_TOO_LARGE',
+    RunnerDigestMismatch: 'RUNNER_DIGEST_MISMATCH',
+    RunnerUnavailable: 'RUNNER_UNAVAILABLE',
+    RunnerRegistrationTokenInvalid: 'RUNNER_REGISTRATION_TOKEN_INVALID',
+    RunnerKeyRejected: 'RUNNER_KEY_REJECTED',
+    RunnerKeyInUse: 'RUNNER_KEY_IN_USE',
+    RunnerKeyChanged: 'RUNNER_KEY_CHANGED'
 } as const;
 export type ListProjects400ResponseErrorCodeEnum = typeof ListProjects400ResponseErrorCodeEnum[keyof typeof ListProjects400ResponseErrorCodeEnum];
 
