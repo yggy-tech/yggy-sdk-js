@@ -119,6 +119,8 @@ export interface UploadDocumentRequest {
     title?: string;
     source?: string;
     originSystem?: string;
+    externalId?: string;
+    metadata?: string;
     projectId2?: string;
     desiredTier?: UploadDocumentDesiredTierEnum;
     inferenceMode?: UploadDocumentInferenceModeEnum;
@@ -810,6 +812,14 @@ export class DocumentsApi extends runtime.BaseAPI {
 
         if (requestParameters['originSystem'] != null) {
             formParams.append('originSystem', requestParameters['originSystem'] as any);
+        }
+
+        if (requestParameters['externalId'] != null) {
+            formParams.append('externalId', requestParameters['externalId'] as any);
+        }
+
+        if (requestParameters['metadata'] != null) {
+            formParams.append('metadata', requestParameters['metadata'] as any);
         }
 
         if (requestParameters['projectId2'] != null) {
