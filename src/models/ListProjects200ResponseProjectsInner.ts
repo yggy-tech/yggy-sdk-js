@@ -62,6 +62,12 @@ export interface ListProjects200ResponseProjectsInner {
      */
     kind?: ListProjects200ResponseProjectsInnerKindEnum;
     /**
+     * Who in the organization can see that this project exists. `private` (the default): only project members and organization owners and admins. `public`: every organization member sees its name in the project list, but only members can open it. A personal project (My files) is always `private`.
+     * @type {string}
+     * @memberof ListProjects200ResponseProjectsInner
+     */
+    visibility: ListProjects200ResponseProjectsInnerVisibilityEnum;
+    /**
      * 
      * @type {string}
      * @memberof ListProjects200ResponseProjectsInner
@@ -104,23 +110,29 @@ export interface ListProjects200ResponseProjectsInner {
      */
     updatedAt?: string;
     /**
-     * 
+     * Documents in the project. Null when `isMember` is false: a public project's numbers are for its members only.
      * @type {number}
      * @memberof ListProjects200ResponseProjectsInner
      */
-    documentCount: number;
+    documentCount: number | null;
     /**
-     * 
+     * Relations (triples) in the project. Null when `isMember` is false: a public project's numbers are for its members only.
      * @type {number}
      * @memberof ListProjects200ResponseProjectsInner
      */
-    tripleCount: number;
+    tripleCount: number | null;
     /**
-     * 
+     * Entities in the project. Null when `isMember` is false: a public project's numbers are for its members only.
      * @type {number}
      * @memberof ListProjects200ResponseProjectsInner
      */
-    entityCount: number;
+    entityCount: number | null;
+    /**
+     * True when the caller can open the project: a project member, an organization owner or admin, or an organization API key. False for a public project the caller is not a member of.
+     * @type {boolean}
+     * @memberof ListProjects200ResponseProjectsInner
+     */
+    isMember: boolean;
 }
 
 
@@ -132,6 +144,15 @@ export const ListProjects200ResponseProjectsInnerKindEnum = {
     Personal: 'personal'
 } as const;
 export type ListProjects200ResponseProjectsInnerKindEnum = typeof ListProjects200ResponseProjectsInnerKindEnum[keyof typeof ListProjects200ResponseProjectsInnerKindEnum];
+
+/**
+ * @export
+ */
+export const ListProjects200ResponseProjectsInnerVisibilityEnum = {
+    Private: 'private',
+    Public: 'public'
+} as const;
+export type ListProjects200ResponseProjectsInnerVisibilityEnum = typeof ListProjects200ResponseProjectsInnerVisibilityEnum[keyof typeof ListProjects200ResponseProjectsInnerVisibilityEnum];
 
 /**
  * @export
@@ -152,9 +173,11 @@ export function instanceOfListProjects200ResponseProjectsInner(value: object): v
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('color' in value) || value['color'] === undefined) return false;
     if (!('organizationId' in value) || value['organizationId'] === undefined) return false;
+    if (!('visibility' in value) || value['visibility'] === undefined) return false;
     if (!('documentCount' in value) || value['documentCount'] === undefined) return false;
     if (!('tripleCount' in value) || value['tripleCount'] === undefined) return false;
     if (!('entityCount' in value) || value['entityCount'] === undefined) return false;
+    if (!('isMember' in value) || value['isMember'] === undefined) return false;
     return true;
 }
 
@@ -175,6 +198,7 @@ export function ListProjects200ResponseProjectsInnerFromJSONTyped(json: any, ign
         'organizationId': json['organizationId'],
         'externalId': json['externalId'] == null ? undefined : json['externalId'],
         'kind': json['kind'] == null ? undefined : json['kind'],
+        'visibility': json['visibility'],
         'extractionPurpose': json['extractionPurpose'] == null ? undefined : json['extractionPurpose'],
         'extractionInclude': json['extractionInclude'] == null ? undefined : json['extractionInclude'],
         'extractionSkip': json['extractionSkip'] == null ? undefined : json['extractionSkip'],
@@ -185,6 +209,7 @@ export function ListProjects200ResponseProjectsInnerFromJSONTyped(json: any, ign
         'documentCount': json['documentCount'],
         'tripleCount': json['tripleCount'],
         'entityCount': json['entityCount'],
+        'isMember': json['isMember'],
     };
 }
 
@@ -206,6 +231,7 @@ export function ListProjects200ResponseProjectsInnerToJSONTyped(value?: ListProj
         'organizationId': value['organizationId'],
         'externalId': value['externalId'],
         'kind': value['kind'],
+        'visibility': value['visibility'],
         'extractionPurpose': value['extractionPurpose'],
         'extractionInclude': value['extractionInclude'],
         'extractionSkip': value['extractionSkip'],
@@ -216,6 +242,7 @@ export function ListProjects200ResponseProjectsInnerToJSONTyped(value?: ListProj
         'documentCount': value['documentCount'],
         'tripleCount': value['tripleCount'],
         'entityCount': value['entityCount'],
+        'isMember': value['isMember'],
     };
 }
 

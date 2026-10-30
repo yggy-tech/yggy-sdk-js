@@ -45,8 +45,8 @@ export interface QueryProjectOperationRequest {
 export class QueryApi extends runtime.BaseAPI {
 
     /**
-     * Return ranked document contexts for a question across every project the caller can access. Same body as the project query, including optional include.
-     * Retrieve ranked documents across the organization
+     * Same as the project query, across every project the caller can access. Results from all those projects are ranked together.
+     * Find the documents that answer a question across the organization
      */
     async queryOrganizationRaw(requestParameters: QueryOrganizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QueryProject200Response>> {
         const queryParameters: any = {};
@@ -82,8 +82,8 @@ export class QueryApi extends runtime.BaseAPI {
     }
 
     /**
-     * Return ranked document contexts for a question across every project the caller can access. Same body as the project query, including optional include.
-     * Retrieve ranked documents across the organization
+     * Same as the project query, across every project the caller can access. Results from all those projects are ranked together.
+     * Find the documents that answer a question across the organization
      */
     async queryOrganization(requestParameters: QueryOrganizationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QueryProject200Response> {
         const response = await this.queryOrganizationRaw(requestParameters, initOverrides);
@@ -91,8 +91,8 @@ export class QueryApi extends runtime.BaseAPI {
     }
 
     /**
-     * Return ranked document contexts for a question in one project. Chat remains the conversational surface. This route is retrieve-only. Add include to attach matching entities, triples, or approved identity.
-     * Retrieve ranked documents for a project
+     * Returns the documents in this project that best answer the question, best first, each with the passage that matches and a relevance score. yggy finds them through the facts it extracted (a fact found by the question leads to the document it came from) and through the document title and text. Add `include` to attach the facts of the returned documents, or the entities they mention. This route retrieves only; for a written answer use chat.
+     * Find the documents that answer a question in a project
      */
     async queryProjectRaw(requestParameters: QueryProjectOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QueryProject200Response>> {
         if (requestParameters['projectId'] == null) {
@@ -136,8 +136,8 @@ export class QueryApi extends runtime.BaseAPI {
     }
 
     /**
-     * Return ranked document contexts for a question in one project. Chat remains the conversational surface. This route is retrieve-only. Add include to attach matching entities, triples, or approved identity.
-     * Retrieve ranked documents for a project
+     * Returns the documents in this project that best answer the question, best first, each with the passage that matches and a relevance score. yggy finds them through the facts it extracted (a fact found by the question leads to the document it came from) and through the document title and text. Add `include` to attach the facts of the returned documents, or the entities they mention. This route retrieves only; for a written answer use chat.
+     * Find the documents that answer a question in a project
      */
     async queryProject(requestParameters: QueryProjectOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QueryProject200Response> {
         const response = await this.queryProjectRaw(requestParameters, initOverrides);

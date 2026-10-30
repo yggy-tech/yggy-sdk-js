@@ -49,25 +49,25 @@ import {
  */
 export interface QueryProject200Response {
     /**
-     * Short extractive answer from the top context. Empty when nothing was retrieved.
+     * The sentence from the best document that answers the question. Empty when nothing matched.
      * @type {string}
      * @memberof QueryProject200Response
      */
     answer: string;
     /**
-     * 
+     * The documents that answer the question, best first
      * @type {Array<QueryProject200ResponseContextsInner>}
      * @memberof QueryProject200Response
      */
     contexts: Array<QueryProject200ResponseContextsInner>;
     /**
-     * Present when include asks for entities or identity
+     * Present when `include` asks for entities or identity
      * @type {Array<QueryProject200ResponseEntitiesInner>}
      * @memberof QueryProject200Response
      */
     entities?: Array<QueryProject200ResponseEntitiesInner>;
     /**
-     * Present when include asks for triples
+     * The facts of the returned documents. Present when `include` asks for facts (or triples).
      * @type {Array<QueryProject200ResponseTriplesInner>}
      * @memberof QueryProject200Response
      */
