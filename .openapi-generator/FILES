@@ -45,6 +45,11 @@ src/models/ListDocumentTriples200ResponseTriplesInnerQualifiers.ts
 src/models/ListDocumentTriples200ResponseTriplesInnerSubjectIdentity.ts
 src/models/ListDocuments200Response.ts
 src/models/ListDocuments200ResponseDocumentsInner.ts
+src/models/ListDocuments200ResponseDocumentsInnerAttachedTo.ts
+src/models/ListDocuments200ResponseDocumentsInnerMailAttachmentsInner.ts
+src/models/ListDocuments200ResponseDocumentsInnerStorageLocation.ts
+src/models/ListDocuments200ResponseDocumentsInnerStorageLocationOneOf.ts
+src/models/ListDocuments200ResponseDocumentsInnerStorageLocationOneOf1.ts
 src/models/ListGraphExports200Response.ts
 src/models/ListGraphExports200ResponseExportsInner.ts
 src/models/ListProjects200Response.ts
@@ -54,9 +59,12 @@ src/models/ListProjects400ResponseError.ts
 src/models/QueryProject200Response.ts
 src/models/QueryProject200ResponseArchivedHitsInner.ts
 src/models/QueryProject200ResponseContextsInner.ts
+src/models/QueryProject200ResponseContextsInnerMetadataValue.ts
 src/models/QueryProject200ResponseEntitiesInner.ts
 src/models/QueryProject200ResponseEntitiesInnerIdentity.ts
 src/models/QueryProject200ResponseTriplesInner.ts
+src/models/QueryProject200ResponseTriplesInnerObject.ts
+src/models/QueryProject200ResponseTriplesInnerPredicate.ts
 src/models/QueryProject200ResponseTriplesInnerSubject.ts
 src/models/QueryProjectRequest.ts
 src/models/RetryDocument202Response.ts

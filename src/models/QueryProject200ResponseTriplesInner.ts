@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { QueryProject200ResponseTriplesInnerPredicate } from './QueryProject200ResponseTriplesInnerPredicate';
+import {
+    QueryProject200ResponseTriplesInnerPredicateFromJSON,
+    QueryProject200ResponseTriplesInnerPredicateFromJSONTyped,
+    QueryProject200ResponseTriplesInnerPredicateToJSON,
+    QueryProject200ResponseTriplesInnerPredicateToJSONTyped,
+} from './QueryProject200ResponseTriplesInnerPredicate';
 import type { QueryProject200ResponseTriplesInnerSubject } from './QueryProject200ResponseTriplesInnerSubject';
 import {
     QueryProject200ResponseTriplesInnerSubjectFromJSON,
@@ -20,9 +27,16 @@ import {
     QueryProject200ResponseTriplesInnerSubjectToJSON,
     QueryProject200ResponseTriplesInnerSubjectToJSONTyped,
 } from './QueryProject200ResponseTriplesInnerSubject';
+import type { QueryProject200ResponseTriplesInnerObject } from './QueryProject200ResponseTriplesInnerObject';
+import {
+    QueryProject200ResponseTriplesInnerObjectFromJSON,
+    QueryProject200ResponseTriplesInnerObjectFromJSONTyped,
+    QueryProject200ResponseTriplesInnerObjectToJSON,
+    QueryProject200ResponseTriplesInnerObjectToJSONTyped,
+} from './QueryProject200ResponseTriplesInnerObject';
 
 /**
- * 
+ * A fact yggy extracted: subject, relation, object
  * @export
  * @interface QueryProject200ResponseTriplesInner
  */
@@ -35,24 +49,24 @@ export interface QueryProject200ResponseTriplesInner {
     subject: QueryProject200ResponseTriplesInnerSubject;
     /**
      * 
-     * @type {QueryProject200ResponseTriplesInnerSubject}
+     * @type {QueryProject200ResponseTriplesInnerPredicate}
      * @memberof QueryProject200ResponseTriplesInner
      */
-    predicate: QueryProject200ResponseTriplesInnerSubject;
+    predicate: QueryProject200ResponseTriplesInnerPredicate;
     /**
      * 
-     * @type {QueryProject200ResponseTriplesInnerSubject}
+     * @type {QueryProject200ResponseTriplesInnerObject}
      * @memberof QueryProject200ResponseTriplesInner
      */
-    object: QueryProject200ResponseTriplesInnerSubject;
+    object: QueryProject200ResponseTriplesInnerObject;
     /**
-     * Stored hit text. Omitted when the graph hit has none.
+     * Source text for the fact, when yggy stored it
      * @type {string}
      * @memberof QueryProject200ResponseTriplesInner
      */
     evidence?: string;
     /**
-     * 
+     * The returned document the fact was extracted from
      * @type {string}
      * @memberof QueryProject200ResponseTriplesInner
      */
@@ -80,8 +94,8 @@ export function QueryProject200ResponseTriplesInnerFromJSONTyped(json: any, igno
     return {
         
         'subject': QueryProject200ResponseTriplesInnerSubjectFromJSON(json['subject']),
-        'predicate': QueryProject200ResponseTriplesInnerSubjectFromJSON(json['predicate']),
-        'object': QueryProject200ResponseTriplesInnerSubjectFromJSON(json['object']),
+        'predicate': QueryProject200ResponseTriplesInnerPredicateFromJSON(json['predicate']),
+        'object': QueryProject200ResponseTriplesInnerObjectFromJSON(json['object']),
         'evidence': json['evidence'] == null ? undefined : json['evidence'],
         'documentId': json['documentId'] == null ? undefined : json['documentId'],
     };
@@ -99,8 +113,8 @@ export function QueryProject200ResponseTriplesInnerToJSONTyped(value?: QueryProj
     return {
         
         'subject': QueryProject200ResponseTriplesInnerSubjectToJSON(value['subject']),
-        'predicate': QueryProject200ResponseTriplesInnerSubjectToJSON(value['predicate']),
-        'object': QueryProject200ResponseTriplesInnerSubjectToJSON(value['object']),
+        'predicate': QueryProject200ResponseTriplesInnerPredicateToJSON(value['predicate']),
+        'object': QueryProject200ResponseTriplesInnerObjectToJSON(value['object']),
         'evidence': value['evidence'],
         'documentId': value['documentId'],
     };

@@ -79,6 +79,12 @@ export interface GetDocumentStatus200ResponseStepsInner {
      * @memberof GetDocumentStatus200ResponseStepsInner
      */
     unit?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetDocumentStatus200ResponseStepsInner
+     */
+    waitedForCapacity?: boolean;
 }
 
 
@@ -126,6 +132,7 @@ export function GetDocumentStatus200ResponseStepsInnerFromJSONTyped(json: any, i
         'current': json['current'] == null ? undefined : json['current'],
         'total': json['total'] == null ? undefined : json['total'],
         'unit': json['unit'] == null ? undefined : json['unit'],
+        'waitedForCapacity': json['waitedForCapacity'] == null ? undefined : json['waitedForCapacity'],
     };
 }
 
@@ -150,6 +157,7 @@ export function GetDocumentStatus200ResponseStepsInnerToJSONTyped(value?: GetDoc
         'current': value['current'],
         'total': value['total'],
         'unit': value['unit'],
+        'waitedForCapacity': value['waitedForCapacity'],
     };
 }
 

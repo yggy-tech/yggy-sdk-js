@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { QueryProject200ResponseContextsInnerMetadataValue } from './QueryProject200ResponseContextsInnerMetadataValue';
+import {
+    QueryProject200ResponseContextsInnerMetadataValueFromJSON,
+    QueryProject200ResponseContextsInnerMetadataValueFromJSONTyped,
+    QueryProject200ResponseContextsInnerMetadataValueToJSON,
+    QueryProject200ResponseContextsInnerMetadataValueToJSONTyped,
+} from './QueryProject200ResponseContextsInnerMetadataValue';
+
 /**
  * 
  * @export
@@ -20,19 +28,19 @@ import { mapValues } from '../runtime';
  */
 export interface QueryProject200ResponseContextsInner {
     /**
-     * Stable context id: source slug when present, otherwise the document id
+     * Stable id of the result: the document's `source` when it has one, otherwise its id
      * @type {string}
      * @memberof QueryProject200ResponseContextsInner
      */
     id: string;
     /**
-     * Document id
+     * yggy document id
      * @type {string}
      * @memberof QueryProject200ResponseContextsInner
      */
     documentId: string;
     /**
-     * Caller-supplied source id when the document has one
+     * The `source` you set on upload, when the document has one
      * @type {string}
      * @memberof QueryProject200ResponseContextsInner
      */
@@ -44,17 +52,41 @@ export interface QueryProject200ResponseContextsInner {
      */
     title: string;
     /**
-     * Short passage used for ranking
+     * The passage of the document that best matches the question, up to 400 characters. The title when yggy has no text for the document.
      * @type {string}
      * @memberof QueryProject200ResponseContextsInner
      */
     snippet: string;
     /**
-     * Relative rank from 0 to 1 inside this result set
+     * Relevance from 0 to 1, relative to the best document in this response
      * @type {number}
      * @memberof QueryProject200ResponseContextsInner
      */
     score: number;
+    /**
+     * Your own id for the document, as sent on upload
+     * @type {string}
+     * @memberof QueryProject200ResponseContextsInner
+     */
+    externalId?: string;
+    /**
+     * Business system the data originates from
+     * @type {string}
+     * @memberof QueryProject200ResponseContextsInner
+     */
+    originSystem?: string;
+    /**
+     * Link to the document in your system
+     * @type {string}
+     * @memberof QueryProject200ResponseContextsInner
+     */
+    webUrl?: string;
+    /**
+     * Your own key-value pairs, as sent on upload. Imported documents carry fields of their source here.
+     * @type {{ [key: string]: QueryProject200ResponseContextsInnerMetadataValue; }}
+     * @memberof QueryProject200ResponseContextsInner
+     */
+    metadata?: { [key: string]: QueryProject200ResponseContextsInnerMetadataValue; };
 }
 
 /**
@@ -85,6 +117,10 @@ export function QueryProject200ResponseContextsInnerFromJSONTyped(json: any, ign
         'title': json['title'],
         'snippet': json['snippet'],
         'score': json['score'],
+        'externalId': json['externalId'] == null ? undefined : json['externalId'],
+        'originSystem': json['originSystem'] == null ? undefined : json['originSystem'],
+        'webUrl': json['webUrl'] == null ? undefined : json['webUrl'],
+        'metadata': json['metadata'] == null ? undefined : (mapValues(json['metadata'], QueryProject200ResponseContextsInnerMetadataValueFromJSON)),
     };
 }
 
@@ -105,6 +141,10 @@ export function QueryProject200ResponseContextsInnerToJSONTyped(value?: QueryPro
         'title': value['title'],
         'snippet': value['snippet'],
         'score': value['score'],
+        'externalId': value['externalId'],
+        'originSystem': value['originSystem'],
+        'webUrl': value['webUrl'],
+        'metadata': value['metadata'] == null ? undefined : (mapValues(value['metadata'], QueryProject200ResponseContextsInnerMetadataValueToJSON)),
     };
 }
 
