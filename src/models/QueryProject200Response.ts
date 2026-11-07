@@ -20,6 +20,13 @@ import {
     QueryProject200ResponseContextsInnerToJSON,
     QueryProject200ResponseContextsInnerToJSONTyped,
 } from './QueryProject200ResponseContextsInner';
+import type { QueryProject200ResponseGraph } from './QueryProject200ResponseGraph';
+import {
+    QueryProject200ResponseGraphFromJSON,
+    QueryProject200ResponseGraphFromJSONTyped,
+    QueryProject200ResponseGraphToJSON,
+    QueryProject200ResponseGraphToJSONTyped,
+} from './QueryProject200ResponseGraph';
 import type { QueryProject200ResponseTriplesInner } from './QueryProject200ResponseTriplesInner';
 import {
     QueryProject200ResponseTriplesInnerFromJSON,
@@ -49,25 +56,25 @@ import {
  */
 export interface QueryProject200Response {
     /**
-     * Short extractive answer from the top context. Empty when nothing was retrieved.
+     * The sentence from the best document that answers the question. Empty when nothing matched.
      * @type {string}
      * @memberof QueryProject200Response
      */
     answer: string;
     /**
-     * 
+     * The documents that answer the question, best first
      * @type {Array<QueryProject200ResponseContextsInner>}
      * @memberof QueryProject200Response
      */
     contexts: Array<QueryProject200ResponseContextsInner>;
     /**
-     * Present when include asks for entities or identity
+     * Present when `include` asks for entities or identity
      * @type {Array<QueryProject200ResponseEntitiesInner>}
      * @memberof QueryProject200Response
      */
     entities?: Array<QueryProject200ResponseEntitiesInner>;
     /**
-     * Present when include asks for triples
+     * The facts of the returned documents. Present when `include` asks for facts (or triples).
      * @type {Array<QueryProject200ResponseTriplesInner>}
      * @memberof QueryProject200Response
      */
@@ -78,6 +85,12 @@ export interface QueryProject200Response {
      * @memberof QueryProject200Response
      */
     archivedHits?: Array<QueryProject200ResponseArchivedHitsInner>;
+    /**
+     * 
+     * @type {QueryProject200ResponseGraph}
+     * @memberof QueryProject200Response
+     */
+    graph?: QueryProject200ResponseGraph;
 }
 
 /**
@@ -104,6 +117,7 @@ export function QueryProject200ResponseFromJSONTyped(json: any, ignoreDiscrimina
         'entities': json['entities'] == null ? undefined : ((json['entities'] as Array<any>).map(QueryProject200ResponseEntitiesInnerFromJSON)),
         'triples': json['triples'] == null ? undefined : ((json['triples'] as Array<any>).map(QueryProject200ResponseTriplesInnerFromJSON)),
         'archivedHits': json['archivedHits'] == null ? undefined : ((json['archivedHits'] as Array<any>).map(QueryProject200ResponseArchivedHitsInnerFromJSON)),
+        'graph': json['graph'] == null ? undefined : QueryProject200ResponseGraphFromJSON(json['graph']),
     };
 }
 
@@ -123,6 +137,7 @@ export function QueryProject200ResponseToJSONTyped(value?: QueryProject200Respon
         'entities': value['entities'] == null ? undefined : ((value['entities'] as Array<any>).map(QueryProject200ResponseEntitiesInnerToJSON)),
         'triples': value['triples'] == null ? undefined : ((value['triples'] as Array<any>).map(QueryProject200ResponseTriplesInnerToJSON)),
         'archivedHits': value['archivedHits'] == null ? undefined : ((value['archivedHits'] as Array<any>).map(QueryProject200ResponseArchivedHitsInnerToJSON)),
+        'graph': QueryProject200ResponseGraphToJSON(value['graph']),
     };
 }
 
