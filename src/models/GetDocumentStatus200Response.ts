@@ -137,6 +137,12 @@ export interface GetDocumentStatus200Response {
     triplesExtracted?: number;
     /**
      * 
+     * @type {string}
+     * @memberof GetDocumentStatus200Response
+     */
+    outcome?: GetDocumentStatus200ResponseOutcomeEnum;
+    /**
+     * 
      * @type {number}
      * @memberof GetDocumentStatus200Response
      */
@@ -206,6 +212,14 @@ export type GetDocumentStatus200ResponseStatusEnum = typeof GetDocumentStatus200
 /**
  * @export
  */
+export const GetDocumentStatus200ResponseOutcomeEnum = {
+    Unchanged: 'unchanged'
+} as const;
+export type GetDocumentStatus200ResponseOutcomeEnum = typeof GetDocumentStatus200ResponseOutcomeEnum[keyof typeof GetDocumentStatus200ResponseOutcomeEnum];
+
+/**
+ * @export
+ */
 export const GetDocumentStatus200ResponseExtractionTierEnum = {
     Fast: 'fast',
     Balanced: 'balanced',
@@ -262,6 +276,7 @@ export function GetDocumentStatus200ResponseFromJSONTyped(json: any, ignoreDiscr
         'workflowError': json['workflowError'] == null ? undefined : json['workflowError'],
         'retryable': json['retryable'] == null ? undefined : json['retryable'],
         'triplesExtracted': json['triplesExtracted'] == null ? undefined : json['triplesExtracted'],
+        'outcome': json['outcome'] == null ? undefined : json['outcome'],
         'inputTokens': json['inputTokens'] == null ? undefined : json['inputTokens'],
         'outputTokens': json['outputTokens'] == null ? undefined : json['outputTokens'],
         'extractionTier': json['extractionTier'] == null ? undefined : json['extractionTier'],
@@ -303,6 +318,7 @@ export function GetDocumentStatus200ResponseToJSONTyped(value?: GetDocumentStatu
         'workflowError': value['workflowError'],
         'retryable': value['retryable'],
         'triplesExtracted': value['triplesExtracted'],
+        'outcome': value['outcome'],
         'inputTokens': value['inputTokens'],
         'outputTokens': value['outputTokens'],
         'extractionTier': value['extractionTier'],
