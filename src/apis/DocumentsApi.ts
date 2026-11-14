@@ -119,9 +119,13 @@ export interface UploadDocumentRequest {
     title?: string;
     source?: string;
     originSystem?: string;
+    externalId?: string;
+    metadata?: string;
     projectId2?: string;
+    extractionScope?: UploadDocumentExtractionScopeEnum;
     desiredTier?: UploadDocumentDesiredTierEnum;
     inferenceMode?: UploadDocumentInferenceModeEnum;
+    onboarding?: UploadDocumentOnboardingEnum;
 }
 
 /**
@@ -812,8 +816,20 @@ export class DocumentsApi extends runtime.BaseAPI {
             formParams.append('originSystem', requestParameters['originSystem'] as any);
         }
 
+        if (requestParameters['externalId'] != null) {
+            formParams.append('externalId', requestParameters['externalId'] as any);
+        }
+
+        if (requestParameters['metadata'] != null) {
+            formParams.append('metadata', requestParameters['metadata'] as any);
+        }
+
         if (requestParameters['projectId2'] != null) {
             formParams.append('projectId', requestParameters['projectId2'] as any);
+        }
+
+        if (requestParameters['extractionScope'] != null) {
+            formParams.append('extractionScope', requestParameters['extractionScope'] as any);
         }
 
         if (requestParameters['desiredTier'] != null) {
@@ -822,6 +838,10 @@ export class DocumentsApi extends runtime.BaseAPI {
 
         if (requestParameters['inferenceMode'] != null) {
             formParams.append('inferenceMode', requestParameters['inferenceMode'] as any);
+        }
+
+        if (requestParameters['onboarding'] != null) {
+            formParams.append('onboarding', requestParameters['onboarding'] as any);
         }
 
 
@@ -908,6 +928,13 @@ export type UploadDocumentNoteKindEnum = typeof UploadDocumentNoteKindEnum[keyof
 /**
  * @export
  */
+export const UploadDocumentExtractionScopeEnum = {
+    Systems: 'systems'
+} as const;
+export type UploadDocumentExtractionScopeEnum = typeof UploadDocumentExtractionScopeEnum[keyof typeof UploadDocumentExtractionScopeEnum];
+/**
+ * @export
+ */
 export const UploadDocumentDesiredTierEnum = {
     Auto: 'auto',
     Fast: 'fast',
@@ -925,3 +952,11 @@ export const UploadDocumentInferenceModeEnum = {
     Hybrid: 'hybrid'
 } as const;
 export type UploadDocumentInferenceModeEnum = typeof UploadDocumentInferenceModeEnum[keyof typeof UploadDocumentInferenceModeEnum];
+/**
+ * @export
+ */
+export const UploadDocumentOnboardingEnum = {
+    True: 'true',
+    False: 'false'
+} as const;
+export type UploadDocumentOnboardingEnum = typeof UploadDocumentOnboardingEnum[keyof typeof UploadDocumentOnboardingEnum];

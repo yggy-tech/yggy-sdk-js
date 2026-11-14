@@ -62,6 +62,12 @@ export interface CreateProject201ResponseProject {
      */
     kind?: CreateProject201ResponseProjectKindEnum;
     /**
+     * Who in the organization can see that this project exists. `private` (the default): only project members and organization owners and admins. `public`: every organization member sees its name in the project list, but only members can open it. A personal project (My files) is always `private`.
+     * @type {string}
+     * @memberof CreateProject201ResponseProject
+     */
+    visibility: CreateProject201ResponseProjectVisibilityEnum;
+    /**
      * 
      * @type {string}
      * @memberof CreateProject201ResponseProject
@@ -111,9 +117,20 @@ export interface CreateProject201ResponseProject {
  */
 export const CreateProject201ResponseProjectKindEnum = {
     Shared: 'shared',
-    Personal: 'personal'
+    Personal: 'personal',
+    Migration: 'migration',
+    Systems: 'systems'
 } as const;
 export type CreateProject201ResponseProjectKindEnum = typeof CreateProject201ResponseProjectKindEnum[keyof typeof CreateProject201ResponseProjectKindEnum];
+
+/**
+ * @export
+ */
+export const CreateProject201ResponseProjectVisibilityEnum = {
+    Private: 'private',
+    Public: 'public'
+} as const;
+export type CreateProject201ResponseProjectVisibilityEnum = typeof CreateProject201ResponseProjectVisibilityEnum[keyof typeof CreateProject201ResponseProjectVisibilityEnum];
 
 /**
  * @export
@@ -134,6 +151,7 @@ export function instanceOfCreateProject201ResponseProject(value: object): value 
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('color' in value) || value['color'] === undefined) return false;
     if (!('organizationId' in value) || value['organizationId'] === undefined) return false;
+    if (!('visibility' in value) || value['visibility'] === undefined) return false;
     return true;
 }
 
@@ -154,6 +172,7 @@ export function CreateProject201ResponseProjectFromJSONTyped(json: any, ignoreDi
         'organizationId': json['organizationId'],
         'externalId': json['externalId'] == null ? undefined : json['externalId'],
         'kind': json['kind'] == null ? undefined : json['kind'],
+        'visibility': json['visibility'],
         'extractionPurpose': json['extractionPurpose'] == null ? undefined : json['extractionPurpose'],
         'extractionInclude': json['extractionInclude'] == null ? undefined : json['extractionInclude'],
         'extractionSkip': json['extractionSkip'] == null ? undefined : json['extractionSkip'],
@@ -182,6 +201,7 @@ export function CreateProject201ResponseProjectToJSONTyped(value?: CreateProject
         'organizationId': value['organizationId'],
         'externalId': value['externalId'],
         'kind': value['kind'],
+        'visibility': value['visibility'],
         'extractionPurpose': value['extractionPurpose'],
         'extractionInclude': value['extractionInclude'],
         'extractionSkip': value['extractionSkip'],

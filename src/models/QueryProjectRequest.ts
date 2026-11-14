@@ -20,35 +20,41 @@ import { mapValues } from '../runtime';
  */
 export interface QueryProjectRequest {
     /**
-     * Natural-language question to retrieve documents for
+     * The question in plain language. yggy finds the documents that answer it.
      * @type {string}
      * @memberof QueryProjectRequest
      */
     question: string;
     /**
-     * Maximum number of ranked contexts to return
+     * How many documents to return, best first.
      * @type {number}
      * @memberof QueryProjectRequest
      */
     topK?: number;
     /**
-     * hybrid combines document text with graph matches; lexical uses document text only; graph uses graph matches only
+     * How documents are found and ranked. `hybrid` (default) uses the facts yggy extracted and the document text; `lexical` uses the document text only; `graph` returns only documents the extracted facts point to.
      * @type {string}
      * @memberof QueryProjectRequest
      */
     mode?: QueryProjectRequestModeEnum;
     /**
-     * Optional graph fields to attach. Omit for the default retrieve body. identity alone returns only entities with an approved identity.
+     * Extra knowledge to attach to the answer. `facts` (also accepted as `triples`) adds the facts extracted from the returned documents; `entities` adds the people, organizations and things they mention; `identity` adds only entities with an approved identity, such as a register number.
      * @type {Array<string>}
      * @memberof QueryProjectRequest
      */
     include?: Array<QueryProjectRequestIncludeEnum>;
     /**
-     * Also search cold triples. Archived hits surface separately and trigger a background promote. Single-project scope only.
+     * Also search archived facts. They are returned in `archivedHits` and brought back into the live graph in the background. Project queries only.
      * @type {boolean}
      * @memberof QueryProjectRequest
      */
     includeArchived?: boolean;
+    /**
+     * How many relations to follow from what the question found. With 1, yggy also looks at the entities directly related to the facts and entities it found, and the documents those relations come from; each further hop counts half as much, so direct matches stay on top. `0` turns this off. Ignored in `lexical` mode.
+     * @type {number}
+     * @memberof QueryProjectRequest
+     */
+    hops?: number;
 }
 
 
@@ -68,7 +74,8 @@ export type QueryProjectRequestModeEnum = typeof QueryProjectRequestModeEnum[key
 export const QueryProjectRequestIncludeEnum = {
     Entities: 'entities',
     Triples: 'triples',
-    Identity: 'identity'
+    Identity: 'identity',
+    Facts: 'facts'
 } as const;
 export type QueryProjectRequestIncludeEnum = typeof QueryProjectRequestIncludeEnum[keyof typeof QueryProjectRequestIncludeEnum];
 
@@ -96,6 +103,7 @@ export function QueryProjectRequestFromJSONTyped(json: any, ignoreDiscriminator:
         'mode': json['mode'] == null ? undefined : json['mode'],
         'include': json['include'] == null ? undefined : json['include'],
         'includeArchived': json['includeArchived'] == null ? undefined : json['includeArchived'],
+        'hops': json['hops'] == null ? undefined : json['hops'],
     };
 }
 
@@ -115,6 +123,7 @@ export function QueryProjectRequestToJSONTyped(value?: QueryProjectRequest | nul
         'mode': value['mode'],
         'include': value['include'],
         'includeArchived': value['includeArchived'],
+        'hops': value['hops'],
     };
 }
 
