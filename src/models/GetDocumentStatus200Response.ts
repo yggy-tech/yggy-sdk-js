@@ -50,6 +50,12 @@ export interface GetDocumentStatus200Response {
      * @type {string}
      * @memberof GetDocumentStatus200Response
      */
+    documentStatus?: GetDocumentStatus200ResponseDocumentStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetDocumentStatus200Response
+     */
     message?: string;
     /**
      * 
@@ -137,6 +143,12 @@ export interface GetDocumentStatus200Response {
     triplesExtracted?: number;
     /**
      * 
+     * @type {string}
+     * @memberof GetDocumentStatus200Response
+     */
+    outcome?: GetDocumentStatus200ResponseOutcomeEnum;
+    /**
+     * 
      * @type {number}
      * @memberof GetDocumentStatus200Response
      */
@@ -195,6 +207,17 @@ export interface GetDocumentStatus200Response {
 /**
  * @export
  */
+export const GetDocumentStatus200ResponseDocumentStatusEnum = {
+    Pending: 'PENDING',
+    Processing: 'PROCESSING',
+    Completed: 'COMPLETED',
+    Failed: 'FAILED'
+} as const;
+export type GetDocumentStatus200ResponseDocumentStatusEnum = typeof GetDocumentStatus200ResponseDocumentStatusEnum[keyof typeof GetDocumentStatus200ResponseDocumentStatusEnum];
+
+/**
+ * @export
+ */
 export const GetDocumentStatus200ResponseStatusEnum = {
     Pending: 'pending',
     Running: 'running',
@@ -202,6 +225,14 @@ export const GetDocumentStatus200ResponseStatusEnum = {
     Failed: 'failed'
 } as const;
 export type GetDocumentStatus200ResponseStatusEnum = typeof GetDocumentStatus200ResponseStatusEnum[keyof typeof GetDocumentStatus200ResponseStatusEnum];
+
+/**
+ * @export
+ */
+export const GetDocumentStatus200ResponseOutcomeEnum = {
+    Unchanged: 'unchanged'
+} as const;
+export type GetDocumentStatus200ResponseOutcomeEnum = typeof GetDocumentStatus200ResponseOutcomeEnum[keyof typeof GetDocumentStatus200ResponseOutcomeEnum];
 
 /**
  * @export
@@ -247,6 +278,7 @@ export function GetDocumentStatus200ResponseFromJSONTyped(json: any, ignoreDiscr
         'documentId': json['documentId'],
         'step': json['step'] == null ? undefined : json['step'],
         'progress': json['progress'],
+        'documentStatus': json['documentStatus'] == null ? undefined : json['documentStatus'],
         'message': json['message'] == null ? undefined : json['message'],
         'paused': json['paused'] == null ? undefined : json['paused'],
         'completed': json['completed'],
@@ -262,6 +294,7 @@ export function GetDocumentStatus200ResponseFromJSONTyped(json: any, ignoreDiscr
         'workflowError': json['workflowError'] == null ? undefined : json['workflowError'],
         'retryable': json['retryable'] == null ? undefined : json['retryable'],
         'triplesExtracted': json['triplesExtracted'] == null ? undefined : json['triplesExtracted'],
+        'outcome': json['outcome'] == null ? undefined : json['outcome'],
         'inputTokens': json['inputTokens'] == null ? undefined : json['inputTokens'],
         'outputTokens': json['outputTokens'] == null ? undefined : json['outputTokens'],
         'extractionTier': json['extractionTier'] == null ? undefined : json['extractionTier'],
@@ -288,6 +321,7 @@ export function GetDocumentStatus200ResponseToJSONTyped(value?: GetDocumentStatu
         'documentId': value['documentId'],
         'step': value['step'],
         'progress': value['progress'],
+        'documentStatus': value['documentStatus'],
         'message': value['message'],
         'paused': value['paused'],
         'completed': value['completed'],
@@ -303,6 +337,7 @@ export function GetDocumentStatus200ResponseToJSONTyped(value?: GetDocumentStatu
         'workflowError': value['workflowError'],
         'retryable': value['retryable'],
         'triplesExtracted': value['triplesExtracted'],
+        'outcome': value['outcome'],
         'inputTokens': value['inputTokens'],
         'outputTokens': value['outputTokens'],
         'extractionTier': value['extractionTier'],

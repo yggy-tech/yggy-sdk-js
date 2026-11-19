@@ -14,7 +14,7 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ * What the fact is about
  * @export
  * @interface QueryProject200ResponseTriplesInnerSubject
  */
