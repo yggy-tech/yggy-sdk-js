@@ -13,6 +13,28 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ListDocuments200ResponseDocumentsInnerStorageLocation } from './ListDocuments200ResponseDocumentsInnerStorageLocation';
+import {
+    ListDocuments200ResponseDocumentsInnerStorageLocationFromJSON,
+    ListDocuments200ResponseDocumentsInnerStorageLocationFromJSONTyped,
+    ListDocuments200ResponseDocumentsInnerStorageLocationToJSON,
+    ListDocuments200ResponseDocumentsInnerStorageLocationToJSONTyped,
+} from './ListDocuments200ResponseDocumentsInnerStorageLocation';
+import type { ListDocuments200ResponseDocumentsInnerAttachedTo } from './ListDocuments200ResponseDocumentsInnerAttachedTo';
+import {
+    ListDocuments200ResponseDocumentsInnerAttachedToFromJSON,
+    ListDocuments200ResponseDocumentsInnerAttachedToFromJSONTyped,
+    ListDocuments200ResponseDocumentsInnerAttachedToToJSON,
+    ListDocuments200ResponseDocumentsInnerAttachedToToJSONTyped,
+} from './ListDocuments200ResponseDocumentsInnerAttachedTo';
+import type { ListDocuments200ResponseDocumentsInnerMailAttachmentsInner } from './ListDocuments200ResponseDocumentsInnerMailAttachmentsInner';
+import {
+    ListDocuments200ResponseDocumentsInnerMailAttachmentsInnerFromJSON,
+    ListDocuments200ResponseDocumentsInnerMailAttachmentsInnerFromJSONTyped,
+    ListDocuments200ResponseDocumentsInnerMailAttachmentsInnerToJSON,
+    ListDocuments200ResponseDocumentsInnerMailAttachmentsInnerToJSONTyped,
+} from './ListDocuments200ResponseDocumentsInnerMailAttachmentsInner';
+
 /**
  * 
  * @export
@@ -61,6 +83,12 @@ export interface ListDocuments200ResponseDocumentsInner {
      * @memberof ListDocuments200ResponseDocumentsInner
      */
     originSystem?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListDocuments200ResponseDocumentsInner
+     */
+    sourceExternalId?: string | null;
     /**
      * 
      * @type {string}
@@ -121,6 +149,12 @@ export interface ListDocuments200ResponseDocumentsInner {
      * @memberof ListDocuments200ResponseDocumentsInner
      */
     failureMessage?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListDocuments200ResponseDocumentsInner
+     */
+    failedStage?: ListDocuments200ResponseDocumentsInnerFailedStageEnum;
     /**
      * 
      * @type {string}
@@ -225,6 +259,24 @@ export interface ListDocuments200ResponseDocumentsInner {
     sourceMetadata?: string | null;
     /**
      * 
+     * @type {ListDocuments200ResponseDocumentsInnerAttachedTo}
+     * @memberof ListDocuments200ResponseDocumentsInner
+     */
+    attachedTo?: ListDocuments200ResponseDocumentsInnerAttachedTo;
+    /**
+     * 
+     * @type {ListDocuments200ResponseDocumentsInnerStorageLocation}
+     * @memberof ListDocuments200ResponseDocumentsInner
+     */
+    storageLocation?: ListDocuments200ResponseDocumentsInnerStorageLocation | null;
+    /**
+     * 
+     * @type {Array<ListDocuments200ResponseDocumentsInnerMailAttachmentsInner>}
+     * @memberof ListDocuments200ResponseDocumentsInner
+     */
+    mailAttachments?: Array<ListDocuments200ResponseDocumentsInnerMailAttachmentsInner>;
+    /**
+     * 
      * @type {string}
      * @memberof ListDocuments200ResponseDocumentsInner
      */
@@ -247,7 +299,8 @@ export const ListDocuments200ResponseDocumentsInnerSourceKindEnum = {
     Chat: 'CHAT',
     Seed: 'SEED',
     Link: 'LINK',
-    Shared: 'SHARED'
+    Shared: 'SHARED',
+    Forwarded: 'FORWARDED'
 } as const;
 export type ListDocuments200ResponseDocumentsInnerSourceKindEnum = typeof ListDocuments200ResponseDocumentsInnerSourceKindEnum[keyof typeof ListDocuments200ResponseDocumentsInnerSourceKindEnum];
 
@@ -262,6 +315,19 @@ export const ListDocuments200ResponseDocumentsInnerStatusEnum = {
     Stored: 'STORED'
 } as const;
 export type ListDocuments200ResponseDocumentsInnerStatusEnum = typeof ListDocuments200ResponseDocumentsInnerStatusEnum[keyof typeof ListDocuments200ResponseDocumentsInnerStatusEnum];
+
+/**
+ * @export
+ */
+export const ListDocuments200ResponseDocumentsInnerFailedStageEnum = {
+    Parse: 'parse',
+    Detection: 'detection',
+    Extract: 'extract',
+    Resolve: 'resolve',
+    Insert: 'insert',
+    Finalize: 'finalize'
+} as const;
+export type ListDocuments200ResponseDocumentsInnerFailedStageEnum = typeof ListDocuments200ResponseDocumentsInnerFailedStageEnum[keyof typeof ListDocuments200ResponseDocumentsInnerFailedStageEnum];
 
 /**
  * @export
@@ -305,6 +371,7 @@ export function ListDocuments200ResponseDocumentsInnerFromJSONTyped(json: any, i
         'source': json['source'] == null ? undefined : json['source'],
         'sourceKind': json['sourceKind'] == null ? undefined : json['sourceKind'],
         'originSystem': json['originSystem'] == null ? undefined : json['originSystem'],
+        'sourceExternalId': json['sourceExternalId'] == null ? undefined : json['sourceExternalId'],
         'ownerExternalId': json['ownerExternalId'] == null ? undefined : json['ownerExternalId'],
         'ownerDisplayName': json['ownerDisplayName'] == null ? undefined : json['ownerDisplayName'],
         'contentType': json['contentType'],
@@ -315,6 +382,7 @@ export function ListDocuments200ResponseDocumentsInnerFromJSONTyped(json: any, i
         'error': json['error'] == null ? undefined : json['error'],
         'code': json['code'] == null ? undefined : json['code'],
         'failureMessage': json['failureMessage'] == null ? undefined : json['failureMessage'],
+        'failedStage': json['failedStage'] == null ? undefined : json['failedStage'],
         'storageUrl': json['storageUrl'] == null ? undefined : json['storageUrl'],
         'deletedAt': json['deletedAt'] == null ? undefined : json['deletedAt'],
         'noteKind': json['noteKind'] == null ? undefined : json['noteKind'],
@@ -332,6 +400,9 @@ export function ListDocuments200ResponseDocumentsInnerFromJSONTyped(json: any, i
         'sourceModifiedAt': json['sourceModifiedAt'] == null ? undefined : json['sourceModifiedAt'],
         'sourceAuthor': json['sourceAuthor'] == null ? undefined : json['sourceAuthor'],
         'sourceMetadata': json['sourceMetadata'] == null ? undefined : json['sourceMetadata'],
+        'attachedTo': json['attachedTo'] == null ? undefined : ListDocuments200ResponseDocumentsInnerAttachedToFromJSON(json['attachedTo']),
+        'storageLocation': json['storageLocation'] == null ? undefined : ListDocuments200ResponseDocumentsInnerStorageLocationFromJSON(json['storageLocation']),
+        'mailAttachments': json['mailAttachments'] == null ? undefined : ((json['mailAttachments'] as Array<any>).map(ListDocuments200ResponseDocumentsInnerMailAttachmentsInnerFromJSON)),
         'projectExternalId': json['projectExternalId'] == null ? undefined : json['projectExternalId'],
     };
 }
@@ -354,6 +425,7 @@ export function ListDocuments200ResponseDocumentsInnerToJSONTyped(value?: ListDo
         'source': value['source'],
         'sourceKind': value['sourceKind'],
         'originSystem': value['originSystem'],
+        'sourceExternalId': value['sourceExternalId'],
         'ownerExternalId': value['ownerExternalId'],
         'ownerDisplayName': value['ownerDisplayName'],
         'contentType': value['contentType'],
@@ -364,6 +436,7 @@ export function ListDocuments200ResponseDocumentsInnerToJSONTyped(value?: ListDo
         'error': value['error'],
         'code': value['code'],
         'failureMessage': value['failureMessage'],
+        'failedStage': value['failedStage'],
         'storageUrl': value['storageUrl'],
         'deletedAt': value['deletedAt'],
         'noteKind': value['noteKind'],
@@ -381,6 +454,9 @@ export function ListDocuments200ResponseDocumentsInnerToJSONTyped(value?: ListDo
         'sourceModifiedAt': value['sourceModifiedAt'],
         'sourceAuthor': value['sourceAuthor'],
         'sourceMetadata': value['sourceMetadata'],
+        'attachedTo': ListDocuments200ResponseDocumentsInnerAttachedToToJSON(value['attachedTo']),
+        'storageLocation': ListDocuments200ResponseDocumentsInnerStorageLocationToJSON(value['storageLocation']),
+        'mailAttachments': value['mailAttachments'] == null ? undefined : ((value['mailAttachments'] as Array<any>).map(ListDocuments200ResponseDocumentsInnerMailAttachmentsInnerToJSON)),
         'projectExternalId': value['projectExternalId'],
     };
 }

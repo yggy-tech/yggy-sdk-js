@@ -15,14 +15,14 @@
 
 import * as runtime from '../runtime';
 import type {
+  AppErrorResponse,
   EntityRead,
-  ListProjects400Response,
 } from '../models/index';
 import {
+    AppErrorResponseFromJSON,
+    AppErrorResponseToJSON,
     EntityReadFromJSON,
     EntityReadToJSON,
-    ListProjects400ResponseFromJSON,
-    ListProjects400ResponseToJSON,
 } from '../models/index';
 
 export interface GetEntityByIdentityRequest {
