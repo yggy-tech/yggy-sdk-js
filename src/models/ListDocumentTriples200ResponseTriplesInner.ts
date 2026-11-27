@@ -20,6 +20,13 @@ import {
     ListDocumentTriples200ResponseTriplesInnerSubjectIdentityToJSON,
     ListDocumentTriples200ResponseTriplesInnerSubjectIdentityToJSONTyped,
 } from './ListDocumentTriples200ResponseTriplesInnerSubjectIdentity';
+import type { HowSure } from './HowSure';
+import {
+    HowSureFromJSON,
+    HowSureFromJSONTyped,
+    HowSureToJSON,
+    HowSureToJSONTyped,
+} from './HowSure';
 import type { ListDocumentTriples200ResponseTriplesInnerQualifiers } from './ListDocumentTriples200ResponseTriplesInnerQualifiers';
 import {
     ListDocumentTriples200ResponseTriplesInnerQualifiersFromJSON,
@@ -27,6 +34,13 @@ import {
     ListDocumentTriples200ResponseTriplesInnerQualifiersToJSON,
     ListDocumentTriples200ResponseTriplesInnerQualifiersToJSONTyped,
 } from './ListDocumentTriples200ResponseTriplesInnerQualifiers';
+import type { ListDocumentTriples200ResponseTriplesInnerObjectIdentity } from './ListDocumentTriples200ResponseTriplesInnerObjectIdentity';
+import {
+    ListDocumentTriples200ResponseTriplesInnerObjectIdentityFromJSON,
+    ListDocumentTriples200ResponseTriplesInnerObjectIdentityFromJSONTyped,
+    ListDocumentTriples200ResponseTriplesInnerObjectIdentityToJSON,
+    ListDocumentTriples200ResponseTriplesInnerObjectIdentityToJSONTyped,
+} from './ListDocumentTriples200ResponseTriplesInnerObjectIdentity';
 
 /**
  * 
@@ -66,6 +80,12 @@ export interface ListDocumentTriples200ResponseTriplesInner {
     subjectIdentity?: ListDocumentTriples200ResponseTriplesInnerSubjectIdentity;
     /**
      * 
+     * @type {ListDocumentTriples200ResponseTriplesInnerObjectIdentity}
+     * @memberof ListDocumentTriples200ResponseTriplesInner
+     */
+    objectIdentity?: ListDocumentTriples200ResponseTriplesInnerObjectIdentity;
+    /**
+     * 
      * @type {string}
      * @memberof ListDocumentTriples200ResponseTriplesInner
      */
@@ -82,6 +102,18 @@ export interface ListDocumentTriples200ResponseTriplesInner {
      * @memberof ListDocumentTriples200ResponseTriplesInner
      */
     subjectIdentityUri?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListDocumentTriples200ResponseTriplesInner
+     */
+    subjectStatus?: ListDocumentTriples200ResponseTriplesInnerSubjectStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListDocumentTriples200ResponseTriplesInner
+     */
+    objectStatus?: ListDocumentTriples200ResponseTriplesInnerObjectStatusEnum;
     /**
      * 
      * @type {string}
@@ -135,6 +167,12 @@ export interface ListDocumentTriples200ResponseTriplesInner {
      * @type {string}
      * @memberof ListDocumentTriples200ResponseTriplesInner
      */
+    evidenceImageId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListDocumentTriples200ResponseTriplesInner
+     */
     note?: string;
     /**
      * 
@@ -148,8 +186,40 @@ export interface ListDocumentTriples200ResponseTriplesInner {
      * @memberof ListDocumentTriples200ResponseTriplesInner
      */
     status?: ListDocumentTriples200ResponseTriplesInnerStatusEnum;
+    /**
+     * 
+     * @type {HowSure}
+     * @memberof ListDocumentTriples200ResponseTriplesInner
+     */
+    howSure: HowSure;
 }
 
+
+/**
+ * @export
+ */
+export const ListDocumentTriples200ResponseTriplesInnerSubjectStatusEnum = {
+    Active: 'ACTIVE',
+    Superseded: 'SUPERSEDED',
+    Conflicting: 'CONFLICTING',
+    Retracted: 'RETRACTED',
+    PendingOntology: 'PENDING_ONTOLOGY',
+    SourceDeleted: 'SOURCE_DELETED'
+} as const;
+export type ListDocumentTriples200ResponseTriplesInnerSubjectStatusEnum = typeof ListDocumentTriples200ResponseTriplesInnerSubjectStatusEnum[keyof typeof ListDocumentTriples200ResponseTriplesInnerSubjectStatusEnum];
+
+/**
+ * @export
+ */
+export const ListDocumentTriples200ResponseTriplesInnerObjectStatusEnum = {
+    Active: 'ACTIVE',
+    Superseded: 'SUPERSEDED',
+    Conflicting: 'CONFLICTING',
+    Retracted: 'RETRACTED',
+    PendingOntology: 'PENDING_ONTOLOGY',
+    SourceDeleted: 'SOURCE_DELETED'
+} as const;
+export type ListDocumentTriples200ResponseTriplesInnerObjectStatusEnum = typeof ListDocumentTriples200ResponseTriplesInnerObjectStatusEnum[keyof typeof ListDocumentTriples200ResponseTriplesInnerObjectStatusEnum];
 
 /**
  * @export
@@ -183,6 +253,7 @@ export function instanceOfListDocumentTriples200ResponseTriplesInner(value: obje
     if (!('subject' in value) || value['subject'] === undefined) return false;
     if (!('predicate' in value) || value['predicate'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (!('howSure' in value) || value['howSure'] === undefined) return false;
     return true;
 }
 
@@ -201,9 +272,12 @@ export function ListDocumentTriples200ResponseTriplesInnerFromJSONTyped(json: an
         'predicate': json['predicate'],
         'object': json['object'],
         'subjectIdentity': json['subjectIdentity'] == null ? undefined : ListDocumentTriples200ResponseTriplesInnerSubjectIdentityFromJSON(json['subjectIdentity']),
+        'objectIdentity': json['objectIdentity'] == null ? undefined : ListDocumentTriples200ResponseTriplesInnerObjectIdentityFromJSON(json['objectIdentity']),
         'subjectId': json['subjectId'] == null ? undefined : json['subjectId'],
         'subjectType': json['subjectType'] == null ? undefined : json['subjectType'],
         'subjectIdentityUri': json['subjectIdentityUri'] == null ? undefined : json['subjectIdentityUri'],
+        'subjectStatus': json['subjectStatus'] == null ? undefined : json['subjectStatus'],
+        'objectStatus': json['objectStatus'] == null ? undefined : json['objectStatus'],
         'objectId': json['objectId'] == null ? undefined : json['objectId'],
         'objectType': json['objectType'] == null ? undefined : json['objectType'],
         'objectIdentityUri': json['objectIdentityUri'] == null ? undefined : json['objectIdentityUri'],
@@ -212,9 +286,11 @@ export function ListDocumentTriples200ResponseTriplesInnerFromJSONTyped(json: an
         'extractionMethod': json['extractionMethod'] == null ? undefined : json['extractionMethod'],
         'evidence': json['evidence'] == null ? undefined : json['evidence'],
         'evidenceRegionId': json['evidenceRegionId'] == null ? undefined : json['evidenceRegionId'],
+        'evidenceImageId': json['evidenceImageId'] == null ? undefined : json['evidenceImageId'],
         'note': json['note'] == null ? undefined : json['note'],
         'createdAt': json['created_at'] == null ? undefined : json['created_at'],
         'status': json['status'] == null ? undefined : json['status'],
+        'howSure': HowSureFromJSON(json['howSure']),
     };
 }
 
@@ -234,9 +310,12 @@ export function ListDocumentTriples200ResponseTriplesInnerToJSONTyped(value?: Li
         'predicate': value['predicate'],
         'object': value['object'],
         'subjectIdentity': ListDocumentTriples200ResponseTriplesInnerSubjectIdentityToJSON(value['subjectIdentity']),
+        'objectIdentity': ListDocumentTriples200ResponseTriplesInnerObjectIdentityToJSON(value['objectIdentity']),
         'subjectId': value['subjectId'],
         'subjectType': value['subjectType'],
         'subjectIdentityUri': value['subjectIdentityUri'],
+        'subjectStatus': value['subjectStatus'],
+        'objectStatus': value['objectStatus'],
         'objectId': value['objectId'],
         'objectType': value['objectType'],
         'objectIdentityUri': value['objectIdentityUri'],
@@ -245,9 +324,11 @@ export function ListDocumentTriples200ResponseTriplesInnerToJSONTyped(value?: Li
         'extractionMethod': value['extractionMethod'],
         'evidence': value['evidence'],
         'evidenceRegionId': value['evidenceRegionId'],
+        'evidenceImageId': value['evidenceImageId'],
         'note': value['note'],
         'created_at': value['createdAt'],
         'status': value['status'],
+        'howSure': HowSureToJSON(value['howSure']),
     };
 }
 
