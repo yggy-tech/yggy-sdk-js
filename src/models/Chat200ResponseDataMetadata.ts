@@ -31,6 +31,12 @@ export interface Chat200ResponseDataMetadata {
      * @memberof Chat200ResponseDataMetadata
      */
     tierApplied: Chat200ResponseDataMetadataTierAppliedEnum;
+    /**
+     * Why the applied tier differs from the requested one
+     * @type {string}
+     * @memberof Chat200ResponseDataMetadata
+     */
+    tierReason?: string;
 }
 
 
@@ -66,6 +72,7 @@ export function Chat200ResponseDataMetadataFromJSONTyped(json: any, ignoreDiscri
         
         'processingTimeMs': json['processingTimeMs'],
         'tierApplied': json['tierApplied'],
+        'tierReason': json['tierReason'] == null ? undefined : json['tierReason'],
     };
 }
 
@@ -82,6 +89,7 @@ export function Chat200ResponseDataMetadataToJSONTyped(value?: Chat200ResponseDa
         
         'processingTimeMs': value['processingTimeMs'],
         'tierApplied': value['tierApplied'],
+        'tierReason': value['tierReason'],
     };
 }
 

@@ -15,17 +15,20 @@
 
 import * as runtime from '../runtime';
 import type {
+  AppErrorResponse,
   DeleteDocument200Response,
   GetDocumentStatus200Response,
   ListDocumentTriples200Response,
   ListDocuments200Response,
   ListDocuments200ResponseDocumentsInner,
-  ListProjects400Response,
   RetryDocument202Response,
   UploadDocument202Response,
   UploadDocument400Response,
+  UploadDocumentRequestSourceCreatedAt,
 } from '../models/index';
 import {
+    AppErrorResponseFromJSON,
+    AppErrorResponseToJSON,
     DeleteDocument200ResponseFromJSON,
     DeleteDocument200ResponseToJSON,
     GetDocumentStatus200ResponseFromJSON,
@@ -36,14 +39,14 @@ import {
     ListDocuments200ResponseToJSON,
     ListDocuments200ResponseDocumentsInnerFromJSON,
     ListDocuments200ResponseDocumentsInnerToJSON,
-    ListProjects400ResponseFromJSON,
-    ListProjects400ResponseToJSON,
     RetryDocument202ResponseFromJSON,
     RetryDocument202ResponseToJSON,
     UploadDocument202ResponseFromJSON,
     UploadDocument202ResponseToJSON,
     UploadDocument400ResponseFromJSON,
     UploadDocument400ResponseToJSON,
+    UploadDocumentRequestSourceCreatedAtFromJSON,
+    UploadDocumentRequestSourceCreatedAtToJSON,
 } from '../models/index';
 
 export interface DeleteDocumentRequest {
@@ -87,6 +90,7 @@ export interface ListDocumentsRequest {
     sortDir?: ListDocumentsSortDirEnum;
     q?: string;
     folderId?: string;
+    sourceKind?: ListDocumentsSourceKindEnum;
     noteKind?: ListDocumentsNoteKindEnum;
     xYggyOrganizationId?: string | null;
 }
@@ -119,9 +123,14 @@ export interface UploadDocumentRequest {
     title?: string;
     source?: string;
     originSystem?: string;
+    sourceCreatedAt?: UploadDocumentRequestSourceCreatedAt;
+    externalId?: string;
+    metadata?: string;
     projectId2?: string;
+    extractionScope?: UploadDocumentExtractionScopeEnum;
     desiredTier?: UploadDocumentDesiredTierEnum;
     inferenceMode?: UploadDocumentInferenceModeEnum;
+    onboarding?: UploadDocumentOnboardingEnum;
 }
 
 /**
@@ -498,6 +507,10 @@ export class DocumentsApi extends runtime.BaseAPI {
             queryParameters['folderId'] = requestParameters['folderId'];
         }
 
+        if (requestParameters['sourceKind'] != null) {
+            queryParameters['sourceKind'] = requestParameters['sourceKind'];
+        }
+
         if (requestParameters['noteKind'] != null) {
             queryParameters['noteKind'] = requestParameters['noteKind'];
         }
@@ -812,8 +825,24 @@ export class DocumentsApi extends runtime.BaseAPI {
             formParams.append('originSystem', requestParameters['originSystem'] as any);
         }
 
+        if (requestParameters['sourceCreatedAt'] != null) {
+            formParams.append('sourceCreatedAt', new Blob([JSON.stringify(UploadDocumentRequestSourceCreatedAtToJSON(requestParameters['sourceCreatedAt']))], { type: "application/json", }));
+                    }
+
+        if (requestParameters['externalId'] != null) {
+            formParams.append('externalId', requestParameters['externalId'] as any);
+        }
+
+        if (requestParameters['metadata'] != null) {
+            formParams.append('metadata', requestParameters['metadata'] as any);
+        }
+
         if (requestParameters['projectId2'] != null) {
             formParams.append('projectId', requestParameters['projectId2'] as any);
+        }
+
+        if (requestParameters['extractionScope'] != null) {
+            formParams.append('extractionScope', requestParameters['extractionScope'] as any);
         }
 
         if (requestParameters['desiredTier'] != null) {
@@ -822,6 +851,10 @@ export class DocumentsApi extends runtime.BaseAPI {
 
         if (requestParameters['inferenceMode'] != null) {
             formParams.append('inferenceMode', requestParameters['inferenceMode'] as any);
+        }
+
+        if (requestParameters['onboarding'] != null) {
+            formParams.append('onboarding', requestParameters['onboarding'] as any);
         }
 
 
@@ -890,6 +923,32 @@ export type ListDocumentsSortDirEnum = typeof ListDocumentsSortDirEnum[keyof typ
 /**
  * @export
  */
+export const ListDocumentsSourceKindEnum = {
+    Upload: 'UPLOAD',
+    GoogleDrive: 'GOOGLE_DRIVE',
+    MicrosoftDrive: 'MICROSOFT_DRIVE',
+    Gmail: 'GMAIL',
+    Outlook: 'OUTLOOK',
+    Slack: 'SLACK',
+    Notion: 'NOTION',
+    Linear: 'LINEAR',
+    Github: 'GITHUB',
+    Gitlab: 'GITLAB',
+    Jira: 'JIRA',
+    Confluence: 'CONFLUENCE',
+    Mcp: 'MCP',
+    Salesforce: 'SALESFORCE',
+    Hubspot: 'HUBSPOT',
+    Chat: 'CHAT',
+    Seed: 'SEED',
+    Link: 'LINK',
+    Shared: 'SHARED',
+    Forwarded: 'FORWARDED'
+} as const;
+export type ListDocumentsSourceKindEnum = typeof ListDocumentsSourceKindEnum[keyof typeof ListDocumentsSourceKindEnum];
+/**
+ * @export
+ */
 export const ListDocumentsNoteKindEnum = {
     Capture: 'capture',
     Daily: 'daily',
@@ -905,6 +964,13 @@ export const UploadDocumentNoteKindEnum = {
     Note: 'note'
 } as const;
 export type UploadDocumentNoteKindEnum = typeof UploadDocumentNoteKindEnum[keyof typeof UploadDocumentNoteKindEnum];
+/**
+ * @export
+ */
+export const UploadDocumentExtractionScopeEnum = {
+    Systems: 'systems'
+} as const;
+export type UploadDocumentExtractionScopeEnum = typeof UploadDocumentExtractionScopeEnum[keyof typeof UploadDocumentExtractionScopeEnum];
 /**
  * @export
  */
@@ -925,3 +991,11 @@ export const UploadDocumentInferenceModeEnum = {
     Hybrid: 'hybrid'
 } as const;
 export type UploadDocumentInferenceModeEnum = typeof UploadDocumentInferenceModeEnum[keyof typeof UploadDocumentInferenceModeEnum];
+/**
+ * @export
+ */
+export const UploadDocumentOnboardingEnum = {
+    True: 'true',
+    False: 'false'
+} as const;
+export type UploadDocumentOnboardingEnum = typeof UploadDocumentOnboardingEnum[keyof typeof UploadDocumentOnboardingEnum];

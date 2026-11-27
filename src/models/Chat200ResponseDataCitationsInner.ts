@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { QueryProject200ResponseContextsInnerMetadataValue } from './QueryProject200ResponseContextsInnerMetadataValue';
+import {
+    QueryProject200ResponseContextsInnerMetadataValueFromJSON,
+    QueryProject200ResponseContextsInnerMetadataValueFromJSONTyped,
+    QueryProject200ResponseContextsInnerMetadataValueToJSON,
+    QueryProject200ResponseContextsInnerMetadataValueToJSONTyped,
+} from './QueryProject200ResponseContextsInnerMetadataValue';
+
 /**
  * 
  * @export
@@ -37,6 +45,42 @@ export interface Chat200ResponseDataCitationsInner {
      * @memberof Chat200ResponseDataCitationsInner
      */
     snippet?: string;
+    /**
+     * Document image the cited passage came from, read from the document text; set with imagePlace
+     * @type {string}
+     * @memberof Chat200ResponseDataCitationsInner
+     */
+    imageId?: string;
+    /**
+     * Where that image sits in the document, e.g. "Slide 3"
+     * @type {string}
+     * @memberof Chat200ResponseDataCitationsInner
+     */
+    imagePlace?: string;
+    /**
+     * Your own id for the document, as sent on upload
+     * @type {string}
+     * @memberof Chat200ResponseDataCitationsInner
+     */
+    externalId?: string;
+    /**
+     * Business system the data originates from
+     * @type {string}
+     * @memberof Chat200ResponseDataCitationsInner
+     */
+    originSystem?: string;
+    /**
+     * Link to the document in your system
+     * @type {string}
+     * @memberof Chat200ResponseDataCitationsInner
+     */
+    webUrl?: string;
+    /**
+     * Your own key-value pairs, as sent on upload. Imported documents carry fields of their source here.
+     * @type {{ [key: string]: QueryProject200ResponseContextsInnerMetadataValue; }}
+     * @memberof Chat200ResponseDataCitationsInner
+     */
+    metadata?: { [key: string]: QueryProject200ResponseContextsInnerMetadataValue; };
 }
 
 /**
@@ -60,6 +104,12 @@ export function Chat200ResponseDataCitationsInnerFromJSONTyped(json: any, ignore
         'documentId': json['documentId'],
         'source': json['source'] == null ? undefined : json['source'],
         'snippet': json['snippet'] == null ? undefined : json['snippet'],
+        'imageId': json['imageId'] == null ? undefined : json['imageId'],
+        'imagePlace': json['imagePlace'] == null ? undefined : json['imagePlace'],
+        'externalId': json['externalId'] == null ? undefined : json['externalId'],
+        'originSystem': json['originSystem'] == null ? undefined : json['originSystem'],
+        'webUrl': json['webUrl'] == null ? undefined : json['webUrl'],
+        'metadata': json['metadata'] == null ? undefined : (mapValues(json['metadata'], QueryProject200ResponseContextsInnerMetadataValueFromJSON)),
     };
 }
 
@@ -77,6 +127,12 @@ export function Chat200ResponseDataCitationsInnerToJSONTyped(value?: Chat200Resp
         'documentId': value['documentId'],
         'source': value['source'],
         'snippet': value['snippet'],
+        'imageId': value['imageId'],
+        'imagePlace': value['imagePlace'],
+        'externalId': value['externalId'],
+        'originSystem': value['originSystem'],
+        'webUrl': value['webUrl'],
+        'metadata': value['metadata'] == null ? undefined : (mapValues(value['metadata'], QueryProject200ResponseContextsInnerMetadataValueToJSON)),
     };
 }
 
